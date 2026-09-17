@@ -5,4 +5,5 @@ export interface IProduct {
     price: number;
     stock: number;
     category: Category;
+    reduceStock(quantity: number): boolean;
 }

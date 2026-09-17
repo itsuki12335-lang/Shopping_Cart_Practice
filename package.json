@@ -1,0 +1,27 @@
+{
+  "name": "shoppingcart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "start": "npx tsx main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsuki12335-lang/Shopping_Cart_Practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/itsuki12335-lang/Shopping_Cart_Practice/issues"
+  },
+  "homepage": "https://github.com/itsuki12335-lang/Shopping_Cart_Practice#readme",
+  "devDependencies": {
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  }
+}
