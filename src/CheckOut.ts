@@ -25,5 +25,15 @@ export class CheckOut {
         cart.clearCart();
         return order;
     }
+    cancelOrdeṛ(order: Order): boolean {
+        if (order.orderStatus === "CANCELLED") {
+            return false;
+        }
+        for (let prd of order.items) {
+            prd.product.stock += prd.quantity;
+        }
+        order.orderStatus = "CANCELLED";
+        return true;
+    }
 }
 

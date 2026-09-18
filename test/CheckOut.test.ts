@@ -71,4 +71,36 @@ describe("CheckOut", () => {
         expect(order?.discount).toBe(50_000);
         expect(order?.total).toBe(150_000);
     });
+
+    // ─── cancelOrder ─────────────────────────────────────────────
+    describe("cancelOrder()", () => {
+        it("should restore stock and change orderStatus to CANCELLED", () => {
+            const cart = new Cart();
+            const p1 = makeProduct("P001", 100_000, 10);
+            cart.addItem(p1, 3); // stock drops to 7 after checkout
+
+            const checkout = new CheckOut();
+            const order = checkout.checkOut(cart);
+            expect(p1.stock).toBe(7); // Verify stock after checkout
+
+            const result = checkout.cancelOrder(order!);
+            expect(result).toBe(true);
+            expect(order?.orderStatus).toBe("CANCELLED");
+            expect(p1.stock).toBe(10); // Restocked back to 10
+        });
+
+        it("should return false if order is already CANCELLED", () => {
+            const cart = new Cart();
+            const p1 = makeProduct("P001", 100_000, 10);
+            cart.addItem(p1, 2);
+
+            const checkout = new CheckOut();
+            const order = checkout.checkOut(cart);
+            checkout.cancelOrder(order!); // First cancellation
+
+            // Second cancellation attempt
+            expect(checkout.cancelOrder(order!)).toBe(false);
+        });
+    });
 });
+
